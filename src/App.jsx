@@ -54,8 +54,8 @@ const infinitePlans = [
 ];
 
 function App() {
-  //const today = new Date().toISOString().split("T")[0];
-  const today='2026-02-14'
+  const today = new Date().toISOString().split("T")[0];
+  //const today='2026-02-14'
   const data = valentineWeek[today] || {
     title: "💌 Valentine Week",
     message: "Something special is coming… check back tomorrow 😉"
