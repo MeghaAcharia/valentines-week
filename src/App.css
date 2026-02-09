@@ -86,71 +86,125 @@
 }
 
 /* Chocolate Day */
+
+
+/* Chocolate Day - Drop effect with circle and ripple */
 .chocolate-container {
+  display: block;
+    align-content: center;  
   background: pink;
   position: relative;
   height: 100vh;
+  transition:  1s ease-in-out; /* Smooth transition for background change */
 }
-.chocolate-spill {
-  background: url('https://via.placeholder.com/800x600?text=Chocolate+Spill') no-repeat center;
-  background-size: cover;
+.chocolate-bg {
+  background: #8B4513; /* Chocolate brown color */
+}
+.chocolate-drop {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.7;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: dropFall 2s ease-in-out forwards;
 }
-.chocolate-title, .chocolate-message {
-  position: relative;
-  z-index: 1;
-  padding: 10px;
-}
-.chocolate-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 18px;
-  min-width: 150px;
-}
-.address-form {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.address-form input {
-  padding: 12px;
-  margin: 10px 0;
-  width: 80%;
-  max-width: 300px;
-}
-.address-form button {
-  padding: 12px 24px;
-  margin-top: 10px;
-}
-.chocolate-title.pop-up, .chocolate-message.pop-up, .chocolate-button.pop-up {
-  animation: popUp 1s ease-out;
+.drop-circle {
+  width: clamp(50px, 10vw, 100px);
+  height: clamp(50px, 10vw, 100px);
+  background: #8B4513; /* Chocolate color */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+@keyframes dropFall {
+  0% { top: -100px; }
+  100% { top: 50%; transform: translateX(-50%) translateY(-50%); }
+}
+@keyframes rippleEffect {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}
+
+.chocolate-title.pop-up, .chocolate-message.pop-up, .chocolate-button.pop-up {
+  animation: popUp 1s ease-out;
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+  text-shadow: 4px 4px 4px #aaa;
+}
+.pulse1 {
+    
+    position: absolute;  
+    width: 200px;
+    height: 200px;
+    margin: auto; 
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 1;
+    opacity: 0;
+    border: 3px solid rgba(255,255,255,.1);
+    animation: pulsejg1 4s linear infinite;
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, .6);
+    box-sizing: border-box;
+}
+
+@keyframes pulsejg1 {
+    0% {
+        transform: scale(.6);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(.6);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(.9);
+        opacity: .1;
+    }
+
+    70% {
+        transform: scale(1.1);
+        opacity: .25;
+    }
+
+    80% {
+        transform: scale(1.25);
+        opacity: .1;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+
 /* Teddy Day */
+/* ... existing CSS ... */
+
+/* Teddy Day - Zoom in and disappear */
 .teddy-container {
   position: relative;
   height: 100vh;
+  background-color: #e7bfa3;
 }
 .teddy {
   font-size: clamp(50px, 10vw, 100px);
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
-.run {
-  animation: runToCenter 2s ease-in-out forwards;
+.zoom-in {
+  animation: zoomIn 2s ease-in-out forwards;
 }
-.hug {
-  animation: hug 1s ease-in-out forwards;
+.disappear {
+  animation: disappear 1s ease-in-out forwards;
 }
 .teddy-message {
+    font-family: 'Tangerine', serif;
+  font-size: 48px;
+  text-shadow: 4px 4px 4px #aaa;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -158,31 +212,39 @@
   padding: 20px;
   max-width: 90%;
 }
-@keyframes runToCenter {
-  to { left: 50%; transform: translateX(-50%) translateY(-50%); }
+@keyframes zoomIn {
+  0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(10); opacity: 1; }
 }
-@keyframes hug {
-  to { transform: scale(1.5) translateX(-50%) translateY(-50%); }
+@keyframes disappear {
+  0% { transform: translate(-50%, -50%) scale(10); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
 }
 
+/* ... rest of the CSS remains the same ... */
+
 /* Promise Day */
+/* ... existing CSS ... */
+
+/* Promise Day - All promises fall down, then message pops up */
 .promise-container {
+    font-family: 'Tangerine', serif;
+  font-size: 48px;
+  text-shadow: 4px 4px 4px #aaa;
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background-color: #e9bfe9;
 }
 .falling-promises .promise {
   position: absolute;
   font-size: clamp(16px, 3vw, 24px);
-  animation: fall 4s ease-in-out forwards;
+  animation: fallDown 4s ease-in-out forwards;
 }
 .promise:nth-child(1) { left: 10%; animation-delay: 0s; }
-.promise:nth-child(2) { left: 30%; animation-delay: 1s; }
-.promise:nth-child(3) { left: 50%; animation-delay: 2s; }
-.promise:nth-child(4) { left: 70%; animation-delay: 3s; }
-.final {
-  animation: stay 1s ease-in-out 4s forwards;
-}
+.promise:nth-child(2) { left: 30%; animation-delay: 0.5s; }
+.promise:nth-child(3) { left: 50%; animation-delay: 1s; }
+.promise:nth-child(4) { left: 70%; animation-delay: 1.5s; }
 .final-promise {
   position: absolute;
   top: 50%;
@@ -191,14 +253,22 @@
   padding: 20px;
   max-width: 90%;
 }
-@keyframes fall {
-  to { top: 100vh; opacity: 0; }
+.pop-up {
+  animation: popUp 1s ease-out;
 }
-@keyframes stay {
-  to { top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 1; }
+@keyframes fallDown {
+  0% { top: -50px; opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+@keyframes popUp {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
-/* Hug Day */
+/* ... existing CSS ... */
+
+/* Hug Day - GIF cycling */
 .hug-container {
   position: relative;
   height: 100vh;
@@ -208,9 +278,10 @@
   align-items: center;
 }
 .hug-image {
-  width: clamp(200px, 80vw, 300px);
+  width: clamp(200px, 80vw, 400px);
   height: auto;
-  max-height: 200px;
+  max-height: 300px;
+  margin-bottom: 20px;
 }
 .hug-message {
   margin-top: 20px;
@@ -225,10 +296,14 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Kiss Day */
+/* ... existing CSS ... */
+
+/* Kiss Day - Many kisses filling the screen */
 .kiss-container {
   position: relative;
   height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(45deg, #ff69b4, #ffb6c1); /* Romantic pink gradient */
 }
 .kisses {
   position: absolute;
@@ -239,13 +314,10 @@
 }
 .kiss {
   position: absolute;
-  font-size: clamp(30px, 8vw, 50px);
-  animation: kissTransition 3s ease-in-out infinite;
+  font-size: clamp(20px, 5vw, 40px);
+  animation: kissFloat 4s ease-in-out infinite;
+  opacity: 0.8;
 }
-.kiss:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-.kiss:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
-.kiss:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
-.kiss:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
 .kiss-message {
   position: absolute;
   top: 50%;
@@ -253,40 +325,111 @@
   transform: translate(-50%, -50%);
   padding: 20px;
   max-width: 90%;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
 }
-@keyframes kissTransition {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.5; }
+.pop-up {
+  animation: popUp 1s ease-out;
+}
+@keyframes kissFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(10px) rotate(-5deg); }
+}
+@keyframes popUp {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
-/* Valentine’s Day */
+/* ... existing CSS ... */
+
+/* Valentine’s Day - Creative with floating hearts */
 .valentine-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   padding: 20px;
+  background: linear-gradient(45deg, #ff69b4, #ffb6c1, #ff1493);
+  overflow: hidden;
 }
-.valentine-ask, .schedule-form {
+.hearts-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.floating-heart {
+  position: absolute;
+  font-size: clamp(20px, 5vw, 40px);
+  animation: floatHearts 6s ease-in-out infinite;
+  opacity: 0.7;
+}
+@keyframes floatHearts {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-20px) rotate(10deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(20px) rotate(-10deg); }
+}
+.valentine-ask, .infinite-plan {
   text-align: center;
   max-width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
-.valentine-ask button {
+.slide-in {
+  animation: slideIn 1s ease-out;
+}
+@keyframes slideIn {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.yes-btn {
+  background: #ff1493;
+  color: white;
+  border: none;
+  padding: 15px 30px;
   margin: 10px;
-  padding: 12px 24px;
-  font-size: 16px;
-  min-width: 100px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
-.schedule-form input {
+.yes-btn:hover {
+  background: #ff69b4;
+}
+.no-btn {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 15px 30px;
   margin: 10px;
-  padding: 12px;
-  width: 80%;
-  max-width: 300px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
 }
-.schedule-form button {
-  padding: 12px 24px;
-  margin-top: 10px;
+/* ... existing CSS ... */
+
+/* Valentine’s Day - Fast cycling plans */
+.fast-plan {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff1493;
+  min-height: 30px; /* To prevent layout shift */
 }
+
+/* ... rest of the CSS remains the same ... */
+
+/* ... rest of the CSS remains the same ... */
 
 /* Media Queries for smaller screens */
 @media (max-width: 768px) {
